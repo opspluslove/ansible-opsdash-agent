@@ -1,0 +1,30 @@
+---
+- name: Setup apt source
+  apt_repository:
+    repo: 'deb http://packages.rapidloop.com/debian stable main'
+    state: present
+
+- name: Setup apt key
+  apt_key:
+    keyserver: pgp.mit.edu
+    id: 1E1BACF5
+
+- name: Install agent package
+  apt:
+    name: opsdash-agent
+    update_cache: yes
+    state: present
+
+- name: Deploy configuration file
+  template:
+    src: agent.cfg
+    dest: /etc/opsdash/agent.cfg
+    owner: root
+    group: opsdash
+    mode: 0640
+
+- name: Ensure opsdash agent is started and enabled
+  service:
+    name: opsdash-agentd
+    state: started
+    enabled: yes

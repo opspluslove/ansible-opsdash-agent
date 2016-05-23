@@ -1,0 +1,10 @@
+---
+opsdash_agent_server: "localhost"
+opsdash_agent_name: "{{ ansible_hostname }} agent"
+opsdash_agent_metrics_port: 6273
+opsdash_agent_data_port: 6273
+opsdash_agent_access_logs:
+  - name: nginx
+    path: /var/log/nginx/access.log
+  - name: apache
+    path: "/var/log/httpd/access_log, /var/log/apache2/*access.log"
