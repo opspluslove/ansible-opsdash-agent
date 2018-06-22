@@ -1,13 +1,13 @@
 ---
-- name: Setup apt source
-  apt_repository:
-    repo: 'deb http://packages.rapidloop.com/debian stable main'
-    state: present
-
 - name: Setup apt key
   apt_key:
     keyserver: pgp.mit.edu
     id: 1E1BACF5
+
+- name: Setup apt source
+  apt_repository:
+    repo: 'deb http://packages.rapidloop.com/debian stable main'
+    state: present
 
 - name: Install agent package
   apt:
